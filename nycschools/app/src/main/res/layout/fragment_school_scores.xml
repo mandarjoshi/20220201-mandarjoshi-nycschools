@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="viewModel" type="com.mandarjoshi.nycschools.viewmodel.MainViewModel"/>
+        <variable name="score" type="com.mandarjoshi.nycschools.model.SchoolScore"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/card_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/school_scores_school_name"
+            android:layout_marginHorizontal="@dimen/text_margin"
+            android:layout_marginTop="@dimen/xlarge_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Title"
+            android:textAlignment="center"
+            android:text="@{score.schoolName}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/xlarge_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/school_scores_school_name">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/text_margin">
+                    <TextView
+                        android:id="@+id/school_scores_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        style="@style/BigText"
+                        android:layout_marginBottom="@dimen/xlarge_margin"
+                        android:text="@string/score_title"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/critical_reading_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        style="@style/BigText"
+                        android:text="@string/label_critical_reading"
+                        android:layout_marginTop="@dimen/text_margin"
+
+                        app:layout_constraintWidth_percent="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/school_scores_title"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{score.avgScoreReading}"
+                        android:textColor="@{viewModel.isReadingBestScore(score) ? @color/title_text : @color/black}"
+                        android:textAlignment="center"
+                        app:layout_constraintWidth_percent="0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/critical_reading_label"/>
+
+                    <TextView
+                        android:id="@+id/math_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/text_margin"
+                        style="@style/BigText"
+                        android:text="@string/label_math"
+                        app:layout_constraintWidth_percent="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/critical_reading_label"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        style="@style/BigText"
+                        android:text="@{score.avgScoreMath}"
+                        android:textAlignment="center"
+                        app:layout_constraintWidth_percent="0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/math_label"/>
+
+                    <TextView
+                        android:id="@+id/writing_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/text_margin"
+                        style="@style/BigText"
+                        android:text="@string/label_writing"
+                        app:layout_constraintWidth_percent="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/math_label"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        style="@style/BigText"
+                        android:text="@{score.avgScoreWriting}"
+                        android:textAlignment="center"
+                        app:layout_constraintWidth_percent="0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/writing_label"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

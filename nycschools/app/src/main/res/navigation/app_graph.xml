@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/school_list"
+    android:id="@+id/app_graph">
+
+    <fragment
+        android:id="@+id/school_list"
+        android:name="com.mandarjoshi.nycschools.ui.main.SchoolFragment"
+        android:label="School List"
+        tools:layout="@layout/fragment_school_list">
+        <action
+            android:id="@+id/navigate_to_school_scores"
+            app:destination="@id/school_scores" />
+    </fragment>
+    <fragment
+        android:id="@+id/school_scores"
+        android:name="com.mandarjoshi.nycschools.ui.SchoolScoresFragment"
+        android:label="Product Detail"
+        tools:layout="@layout/fragment_school_scores">
+    </fragment>
+</navigation>
