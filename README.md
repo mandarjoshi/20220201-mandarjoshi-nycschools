@@ -10,4 +10,4 @@ I have used all components used in this project, for my current Kotlin based pro
 
 I have tested this app for both 23 and 30 supported API level.
 
-I kept hard coded strings at couple of plaaaces to show case static code analysis tool similar to detekt. But didn't get time to integrate.
+I kept hard coded strings at couple of places to show case static code analysis tool similar to detekt. But didn't get time to integrate.
