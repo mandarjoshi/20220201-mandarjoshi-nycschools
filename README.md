@@ -9,3 +9,5 @@ Unit test and UI test is big part of product which is in production. It helps us
 I have used all components used in this project, for my current Kotlin based project I am working on. It is in production and 100k+ active users.
 
 I have tested this app for both 23 and 30 supported API level.
+
+I kept hard coded strings at couple of plaaaces to show case static code analysis tool similar to detekt. But didn't get time to integrate.
