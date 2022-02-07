@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -23,41 +24,41 @@ import retrofit2.Response;
 
 public class MainViewModel extends ViewModel {
 
-    @Inject
-    SchoolRepository schoolRepository;
-
+    private SchoolRepository schoolRepository;
     private static final int BEST_READING_SCORE = 400;
 
-    public MutableLiveData<List<SchoolDetails>> schoolList = new MutableLiveData<>();
+    @Inject
+    public MainViewModel(SchoolRepository schoolRepository){
+        this.schoolRepository = schoolRepository;
+    }
 
-    public void loadSchoolList() {
-        if (schoolList.getValue() == null) {
+    private MutableLiveData<List<SchoolDetails>> schoolList;
+    public LiveData<List<SchoolDetails>> getSchoolList() {
+        if (schoolList == null) {
+            schoolList = new MutableLiveData<>();
             populateSchoolList();
-        } else {
-            schoolList.postValue(schoolList.getValue());
         }
+        return schoolList;
     }
 
     public boolean isReadingBestScore(SchoolScore schoolScore){
         if(schoolScore != null) {
             if (TextUtils.isDigitsOnly(schoolScore.avgScoreReading)) {
-                if (Integer.parseInt(schoolScore.avgScoreReading) > BEST_READING_SCORE) {
-                    return true;
-                }
+                return Integer.parseInt(schoolScore.avgScoreReading) > BEST_READING_SCORE;
             }
         }
         return false;
     }
 
-    public MutableLiveData<List<SchoolScore>> schoolScores = new MutableLiveData<>();
     public Map<String, SchoolScore> scoreMap = new HashMap<>();
 
-    public void loadSchoolScore() {
-        if (schoolScores.getValue() == null) {
+    private MutableLiveData<List<SchoolScore>> schoolScores;
+    public LiveData<List<SchoolScore>> getSchoolScore() {
+        if (schoolScores == null) {
+            schoolScores  = new MutableLiveData<>();
             populateSchoolScores();
-        } else {
-            schoolScores.postValue(schoolScores.getValue());
         }
+        return schoolScores;
     }
 
     private void populateSchoolList() {
